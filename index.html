@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Letter for Ms. Anna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #FFB6D9;
+            position: relative;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.8) 1px, transparent 1px),
+                radial-gradient(circle at 60% 70%, rgba(255, 192, 203, 0.6) 1.5px, transparent 1.5px),
+                radial-gradient(circle at 50% 30%, rgba(255, 255, 0, 0.7) 1px, transparent 1px),
+                radial-gradient(circle at 80% 10%, rgba(255, 215, 0, 0.9) 1px, transparent 1px),
+                radial-gradient(circle at 10% 90%, rgba(255, 192, 203, 0.5) 1.5px, transparent 1.5px),
+                radial-gradient(circle at 90% 60%, rgba(255, 255, 0, 0.8) 1px, transparent 1px);
+            background-size: 200% 200%;
+            background-repeat: repeat;
+            animation: twinkle 6s infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        .letter, .photobooth {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 50px;
+            padding: 15px 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 999;
+            font-family: 'Indie Flower', cursive;
+            max-width: 280px;
+        }
+        
+        .music-label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .music-player audio {
+            width: 100%;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .letter {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 28px,
+                #E8E8E8 28px,
+                #E8E8E8 29px
+            );
+            background-position: 0 40px;
+            border: 2px solid #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s ease;
+            pointer-events: none;
+        }
+        
+        .letter.show {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        
+        .letter-date {
+            text-align: right;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .letter-content {
+            text-align: left;
+            font-size: 18px;
+        }
+        
+        .letter-greeting {
+            margin-bottom: 20px;
+        }
+        
+        .letter-body {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .letter-closing {
+            margin-top: 30px;
+        }
+        
+        .letter-signature {
+            margin-top: 40px;
+        }
+        
+        .photobooth {
+            display: inline-block;
+            padding: 20px;
+            background: white;
+            border: 3px dashed #333;
+            box-shadow: 
+                -2px -2px 0px rgba(0,0,0,0.1),
+                2px -2px 0px rgba(0,0,0,0.1),
+                -2px 2px 0px rgba(0,0,0,0.1),
+                2px 2px 0px rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            margin: 20px 0;
+        }
+        
+        .photobooth:hover {
+            transform: rotate(1deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .photo-alternative {
+            color: #666;
+            font-size: 16px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .side-envelope {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            transition: all 0.6s ease;
+        }
+        
+        .side-envelope.moved {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .envelope-small {
+            width: 120px;
+            height: 80px;
+            background: #FFF8DC;
+            border: 2px solid #333;
+            position: relative;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .envelope-flap-small {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-top: 40px solid #D2B48C;
+        }
+        
+        .envelope-line-small {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #333;
+        }
+        
+        .side-envelope {
+            cursor: pointer;
+        }
+        
+        .envelope-small:hover {
+            transform: scale(1.1);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: popUp 0.5s ease;
+            line-height: 1.8;
+            margin: 20px;
+        }
+        
+        @keyframes popUp {
+            from {
+                transform: scale(0) translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .close-modal:hover {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-envelope" id="sideEnvelopeBtn">
+        <div class="envelope-small">
+            <div class="envelope-flap-small"></div>
+            <div class="envelope-line-small"></div>
+        </div>
+    </div>
+    
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="letter-content">
+                <div class="letter-greeting">
+                    Dear Ms. Anna ❤️,
+                </div>
+                
+                <div class="letter-body">
+                    I have to say I'm really sad to see you go. Even though we only worked together for six months, it was really nice getting to know you and learning from you. You made a real impression in such a short time, the CSAIP team won't be the same without your energy and insights!!! huhuhu
+                </div>
+                
+                <div class="letter-body">
+                    Wishing you all the best as you start your fellowship. I'm always available for coffee!
+                </div>
+                
+                <div class="letter-closing">
+                    Take care,
+                </div>
+                
+                <div class="letter-signature">
+                    Janica
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="letter" id="letterContent">
+        <div class="letter-content">
+            <div class="letter-greeting">
+                Dear Ms. Anna ❤️,
+            </div>
+            
+            <div class="letter-body">
+                I have to say I'm really sad to see you go. Even though we only worked together for six months, it was really nice getting to know you and learning from you. You made a real impression in such a short time, the CSAIP team won't be the same without your energy and insights!!! huhuhu
+            </div>
+            
+            <div class="letter-body">
+                Wishing you all the best as you start your fellowship. I'm always available for coffee!
+            </div>
+            
+            <div class="letter-closing">
+                Take care,
+            </div>
+            
+            <div class="letter-signature">
+                Janica
+            </div>
+        </div>
+    </div>
+    
+    <div class="photo-container">
+        <div class="photobooth">
+            <!-- Updated to use the image in the same folder -->
+            <img src="ms-anna-photo.jpg" alt="Ms. Anna's Image" width="250" onerror="this.style.display='none'; document.getElementById('photoAlt').style.display='block';">
+            <div id="photoAlt" class="photo-alternative" style="display: none;">
+                [Photo of Ms. Anna]
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const sideEnvelopeBtn = document.getElementById('sideEnvelopeBtn');
+        const letterModal = document.getElementById('letterModal');
+        const closeModal = document.getElementById('closeModal');
+        const mainLetter = document.getElementById('letterContent');
+        
+        // Function to create envelope opening sound
+        function playEnvelopeSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create a crinkling/paper sound effect
+                const now = audioContext.currentTime;
+                
+                // Multiple short frequency bursts for crackling effect
+                for (let i = 0; i < 8; i++) {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    const filter = audioContext.createBiquadFilter();
+                    
+                    oscillator.connect(filter);
+                    filter.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    // Randomized frequencies for crackling sound
+                    oscillator.frequency.value = 200 + Math.random() * 400;
+                    filter.type = 'highpass';
+                    filter.frequency.value = 2000;
+                    
+                    gainNode.gain.setValueAtTime(0.05, now + i * 0.05);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, now + i * 0.05 + 0.08);
+                    
+                    oscillator.start(now + i * 0.05);
+                    oscillator.stop(now + i * 0.05 + 0.08);
+                }
+            } catch (e) {
+                console.log("Audio not supported in this browser");
+            }
+        }
+        
+        // Open modal and show main letter when envelope is clicked
+        sideEnvelopeBtn.addEventListener('click', function() {
+            letterModal.classList.add('open');
+            mainLetter.classList.add('show');
+            sideEnvelopeBtn.classList.add('moved');
+            playEnvelopeSound();
+        });
+        
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', function() {
+            letterModal.classList.remove('open');
+        });
+        
+        // Close modal when clicking outside the content
+        letterModal.addEventListener('click', function(event) {
+            if (event.target === letterModal) {
+                letterModal.classList.remove('open');
+            }
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                letterModal.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
